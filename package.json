@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "prestart": "lsof -i :3000 | grep LISTEN | awk '{print $2}' | xargs kill -9 || true",
+    "prestart": "for /f \"tokens=5\" %a in ('netstat -ano ^| findstr :3000') do taskkill /F /PID %a",
     "start": "node src/app.js",
     "test": "jest",
     "cypress:run": "npx wait-on http://localhost:3000 && cypress run",
@@ -23,5 +23,8 @@
     "jest": "^29.7.0",
     "supertest": "^7.0.0",
     "wait-on": "^8.0.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }
