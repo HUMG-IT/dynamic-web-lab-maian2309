@@ -1,11 +1,3 @@
-// Import các hàm calculateBMI và classifyBMI từ bmi.js
-
-// Hàm getBMI xử lý yêu cầu từ client
-// Trả về JSON chứa bmi và classification
-
-// Xuất hàm getBMI
-
-// Lưu ý: Tham khảo mã trong tệp nameController.js
 /**
  * Module xử lý yêu cầu tính chỉ số BMI từ client và trả lời với chỉ số BMI cùng phân loại.
  * 
@@ -48,7 +40,8 @@ const getBMI = (req, res) => {
     }
 
     // Tính toán chỉ số BMI và phân loại
-    const bmi = calculateBMI(height, weight);
+    // Chuyển chiều cao từ cm sang mét và gọi hàm calculateBMI
+    const bmi = calculateBMI(weight, height); // Lưu ý: trong calculateBMI, height đã được chuyển từ cm sang mét
     const classification = classifyBMI(bmi);
 
     // Trả về JSON với chỉ số BMI và phân loại
